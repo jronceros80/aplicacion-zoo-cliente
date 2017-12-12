@@ -1,0 +1,78 @@
+<div class="col-lg-12" [@fadeIn]>
+    <a class="boton_activo btn btn-success" 
+    [@marcar]="status" (click) = "cambiarEstado(status)">
+    <span *ngIf="status=='inactive'">Boton Inactivo</span>
+    <span *ngIf="status=='active'">Boton activado</span>
+    </a>
+
+    <hr>
+    <h4>Animaciones CSS3</h4>
+    <a class="boton_transicion">transiciones</a>
+
+    <div class="clearfix"></div>
+    <div class="clase_animada">
+
+    </div>
+
+    <hr>
+
+    <h4>Utilizar jquery dentro de angular</h4>
+    <button id="botonjq">Mostrar texto</button>
+    <p id="textojq">
+        Disfruta de los animales de nuestro zoologico
+    </p>
+
+    <div id="caja" style="border:1px solid black; width: 150px; height: 50px;">
+        hhjhhjhjhjh  h jhjhj  jh h hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjh
+        klklkggdfdcgvg gghhhjhjjkjkjkjklkl
+    </div>
+    <hr />
+    <simple-tiny
+    [elementId]="'descripcionTienda'"
+    (onEditorKeyup)="textoRichEditor($event)"
+    >
+    </simple-tiny>
+
+    <hr>
+    Padre
+    <h1>{{titulo}}</h1>
+    <ul>
+        <li>Camiseta Roja</li>
+        <li>Gorra Negra</li>
+    </ul>
+    <p>
+        Nombre del parque:  
+        <input type="text" [(ngModel)]="nombreDelParque" (keyup)="mostrarNombre()" />
+    </p>
+
+    <p>
+        Resultado: {{nombreDelParque}}
+    </p>
+
+    <div *ngIf="miParque">
+        <h4>Datos de mi parque desde el hijo</h4>
+        <ol>
+            <li>{{miParque.nombre}}</li>
+            <li>{{miParque.metros}}</li>
+            <li>{{miParque.vegetacion}}</li>
+            <li>{{miParque.abierto}}</li>
+        </ol>
+    </div>
+
+    <hr>
+    <parques [nombre]="Jorge" 
+        [metros_cuadrados]="100"
+        (pasameLosDatos) ="verDatosParque($event)"
+        >
+    </parques>
+
+
+    <p *ngIf="nombreDelParque">
+        Hijo
+        <parques [nombre]="nombreDelParque" 
+                [metros_cuadrados]="780"
+                (pasameLosDatos) ="verDatosParque($event)"
+                >
+        </parques>
+    </p>
+</div>
