@@ -1,4 +1,4 @@
-//Modulos
+// Modulos
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +13,7 @@ import { AddComponent } from './components/add/add.component';
 import { EditComponent } from './components/edit/edit.component';
 import { SearchPipe } from './components/pipes/search.pipe';
 
-//Servicios
+// Servicios
 import { AdminGuard } from '../services/admin.guard';
 import { UserService } from '../services/user.service';
 

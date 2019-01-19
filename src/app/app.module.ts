@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { routing, appRoutingProviders } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//Importar nuestro nuevo modulo
+// Importar nuestro nuevo modulo
 import { ModuloEmailModule } from './moduloemail/moduloemail.module';
 import { AdminModule } from './admin/admin.module';
 

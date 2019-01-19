@@ -7,15 +7,13 @@ import { ListComponent } from './components/list/list.component';
 import { AddComponent } from './components/add/add.component';
 import { EditComponent } from './components/edit/edit.component';
 
-//Guards
+// Guards
 import { AdminGuard } from '../services/admin.guard';
 
 const adminRoutes: Routes = [
     {
-        path: 'admin-panel', 
-        component: MainComponent,
-        canActivate: [AdminGuard],
-        children: [
+        path: 'admin-panel', component: MainComponent, canActivate: [AdminGuard], // Ruta Padre
+        children: [ // Rutas hijas
             { path: '', redirectTo: 'listado' , pathMatch: 'full'},
             { path: 'listado', component: ListComponent},
             { path: 'crear', component: AddComponent},
@@ -33,4 +31,4 @@ const adminRoutes: Routes = [
     ]
 })
 
-export class AdminRoutingModule{}
+export class AdminRoutingModule {}

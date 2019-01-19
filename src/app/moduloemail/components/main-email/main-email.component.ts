@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
   `
 })
 export class MainEmailComponent implements OnInit{
-  title = 'Main email';
+  title = 'Modulo de email';
   
   ngOnInit(){
     console.log("Componente principal del modulo cargado");
