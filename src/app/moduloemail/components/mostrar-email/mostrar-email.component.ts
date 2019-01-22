@@ -11,21 +11,21 @@ import { Component, DoCheck, OnInit } from '@angular/core';
     </div>
   `
 })
-export class MostrarEmailComponent implements OnInit, DoCheck{
+export class MostrarEmailComponent implements OnInit, DoCheck {
   title = 'Mostrar email';
   emailContacto: string;
 
-  ngOnInit(){
+  ngOnInit() {
     this.emailContacto = localStorage.getItem('emailContacto');
   }
 
-  ngDoCheck(){
+  ngDoCheck() {
     this.emailContacto = localStorage.getItem('emailContacto');
   }
 
-  borrarEmail(){
+  borrarEmail() {
     localStorage.removeItem('emailContacto');
     localStorage.clear();
-    this.emailContacto= null;
+    this.emailContacto = null;
   }
 }

@@ -4,8 +4,8 @@ import { fadeIn } from '../animation';
 
 @Component({
 	selector: 'tienda',
-    templateUrl:'./tienda.component.html',
-	styleUrls:['./tienda.component.css'],
+    templateUrl: './tienda.component.html',
+	styleUrls: ['./tienda.component.css'],
 	animations: [
 		trigger('marcar', [
 			state('inactive', style({
@@ -17,40 +17,40 @@ import { fadeIn } from '../animation';
 				borderRadius: '50px',
 				transform: 'scale(1.2)'
 			})),
-			transition('inactive => active',animate('300ms linear')),
-			transition('active => inactive',animate('300ms linear'))
+			transition('inactive => active', animate('300ms linear')),
+			transition('active => inactive', animate('300ms linear'))
 		]),
 		fadeIn
 	]
 })
-export class TiendaComponent implements OnInit{
+export class TiendaComponent implements OnInit {
 	public titulo;
 	public nombreDelParque: string;
 	public miParque;
 	public status;
 
-	constructor(){
-		this.titulo = "Esta es la tienda";
-		this.status = "inactive";
+	constructor() {
+		this.titulo = 'Esta es la tienda';
+		this.status = 'inactive';
 	}
 
-	mostrarNombre(){
+	mostrarNombre() {
 		console.log(this.nombreDelParque);
 	}
 
-	verDatosParque(event){
+	verDatosParque(event) {
 		this.miParque = event;
 	}
 
-	cambiarEstado(status){
-		if(status == 'inactive'){
+	cambiarEstado(status) {
+		if (status === 'inactive') {
 			this.status = 'active';
-		}else{
+		}else {
 			this.status = 'inactive';
 		}
 		
 	}
-	ngOnInit(){
+	ngOnInit() {
 		$('#textojq').hide();
 		$('#botonjq').click(function(){
 			$('#textojq').slideToggle();

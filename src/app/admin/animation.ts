@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
-export const fadeLateral = 
+export const fadeLateral =
     trigger('fadeLateral', [
         transition(':enter', [
             style({

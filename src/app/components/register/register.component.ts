@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../models/user'; 
-import { GLOBAL } from '../../services/global';
+import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -9,35 +7,33 @@ import { UserService } from '../../services/user.service';
   templateUrl: './register.component.html',
   providers: [UserService]
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
     public title: string;
     public status: string;
     public user: User;
     constructor(
-        private _route: ActivatedRoute,
-        private _router: Router,
         private _userService: UserService
-    ){
-        this.title ='Registro';
-        this.user = new User('','','','','','ROLE_USER','');
+    ) {
+        this.title = 'Registro';
+        this.user = new User('', '', '', '', '', 'ROLE_USER', '');
     }
 
-    ngOnInit(){
+    ngOnInit() {
         console.log('register.component cargado');
     }
 
-    onSubmit(registerForm){
+    onSubmit(registerForm) {
         this._userService.register(this.user).subscribe(
-            response =>{
-                if(response.user && response.user._id){
+            response => {
+                if (response.user && response.user._id) {
                     this.status = 'success';
-                    this.user = new User('','','','','','ROLE_USER','');
+                    this.user = new User('', '', '', '', '', 'ROLE_USER', '');
                     registerForm.reset();
-                }else{
+                }else {
                     this.status = 'error';
                 }
             },
-            error =>{
+            error => {
                 console.log(<any>error);
             }
         );

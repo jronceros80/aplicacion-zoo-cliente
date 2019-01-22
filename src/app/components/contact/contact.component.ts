@@ -6,11 +6,11 @@ import { fadeIn } from '../animation';
   templateUrl: './contact.component.html',
   animations: [fadeIn]
 })
-export class ContactComponent implements OnInit{
+export class ContactComponent implements OnInit {
     title = 'Contacto';
     emailContacto: string;
 
-    ngOnInit(){
+    ngOnInit() {
         console.log('contact.component cargado');
     }
 

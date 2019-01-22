@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
     <button (click)="guardarEmail()">Guardar Email</button>
   `
 })
-export class GuardarEmailComponent{
+export class GuardarEmailComponent {
   title = 'Guardar email';
   emailContacto: string;
 
-  guardarEmail(){
+  guardarEmail() {
     localStorage.setItem('emailContacto', this.emailContacto);
   }
 }

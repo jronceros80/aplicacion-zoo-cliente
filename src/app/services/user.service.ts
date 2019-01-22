@@ -1,65 +1,64 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
+import { User } from '../models/user';
 
 @Injectable()
-export class UserService{
+export class UserService {
     public url: string;
-    public identity;
-    public token;
+    public identity: User;
+    public token: string;
 
-    constructor(private _http: Http){
+    constructor(private _http: Http) {
         this.url = GLOBAL.url;
     }
 
-    register(user_to_register){
-       let params = JSON.stringify(user_to_register);
-       let headers = new Headers({'Content-Type':'application/json'});
+    register(user_to_register: User) {
+       const params = JSON.stringify(user_to_register);
+       const headers = new Headers({'Content-Type': 'application/json'});
 
        return this._http.post(this.url + 'register', params, {headers: headers})
                             .map(res => res.json());
     }
 
-    signut(user_to_login, gettoken=null){
-        
-        if(gettoken != null){
+    signut(user_to_login, gettoken= null) {
+        if (gettoken != null) {
             user_to_login.gettoken = gettoken;
         }
-        let params = JSON.stringify(user_to_login);
-        let headers = new Headers({'Content-Type':'application/json'});
+        const params = JSON.stringify(user_to_login);
+        const headers = new Headers({'Content-Type': 'application/json'});
 
         return this._http.post(this.url + 'login', params, {headers: headers})
                              .map(res => res.json());
      }
 
-     getIdentity(){
-         let identity = JSON.parse(localStorage.getItem('identity'));
+     getIdentity() {
+         const identity = JSON.parse(localStorage.getItem('identity'));
 
-         if(identity != 'undefined'){
+         if (identity !== 'undefined') {
             this.identity = identity;
-         }else{
+         }else {
             this.identity = null;
          }
          return this.identity;
      }
 
-     getToken(){
-        let token = localStorage.getItem('token');
+     getToken() {
+        const token = localStorage.getItem('token');
 
-        if(token != 'undefined'){
+        if (token !== 'undefined') {
            this.token = token;
-        }else{
+        }else {
             this.token = null;
         }
         return this.token;
     }
 
-    updateUser(user_to_update){
-        let params = JSON.stringify(user_to_update);
-        let headers = new Headers({
-            'Content-Type':'application/json',
+    updateUser(user_to_update: User) {
+        const params = JSON.stringify(user_to_update);
+        const headers = new Headers({
+            'Content-Type': 'application/json',
             'Authorization': this.getToken()
         });
 
@@ -67,7 +66,7 @@ export class UserService{
                              .map(res => res.json());
     }
 
-    getKeepers(){
+    getKeepers() {
         return this._http.get(this.url + 'keepers').map(res => res.json());
     }
 }

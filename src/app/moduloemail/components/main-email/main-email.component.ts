@@ -12,10 +12,10 @@ import { Component, OnInit } from '@angular/core';
     </div>
   `
 })
-export class MainEmailComponent implements OnInit{
+export class MainEmailComponent implements OnInit {
   title = 'Modulo de email';
-  
-  ngOnInit(){
-    console.log("Componente principal del modulo cargado");
+
+  ngOnInit() {
+    console.log('Componente principal del modulo cargado');
   }
 }

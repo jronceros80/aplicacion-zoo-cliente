@@ -6,10 +6,10 @@ import { fadeIn } from '../animation';
   templateUrl: './home.component.html',
   animations: [fadeIn]
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
     title = 'Bienvenido al NGZOO';
 
-    ngOnInit(){
+    ngOnInit() {
         console.log('home.component cargado');
     }
 

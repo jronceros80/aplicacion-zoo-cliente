@@ -6,7 +6,7 @@ import {
     Input,
     Output
   } from '@angular/core';
-  
+
   @Component({
     selector: 'simple-tiny',
     template: `<textarea id="{{elementId}}"></textarea>`
@@ -14,9 +14,9 @@ import {
   export class SimpleTinyComponent implements AfterViewInit, OnDestroy {
     @Input() elementId: String;
     @Output() onEditorKeyup = new EventEmitter<any>();
-  
+
     editor;
-  
+
     ngAfterViewInit() {
       tinymce.init({
         selector: '#' + this.elementId,
@@ -31,9 +31,8 @@ import {
         },
       });
     }
-  
+
     ngOnDestroy() {
       tinymce.remove(this.editor);
     }
   }
-  

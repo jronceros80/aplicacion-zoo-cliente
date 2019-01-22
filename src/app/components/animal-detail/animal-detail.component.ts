@@ -11,7 +11,7 @@ import { Animal } from '../../models/animal';
   templateUrl: './animal-detail.component.html',
   providers: [AnimalService]
 })
-export class AnimalDetailComponent implements OnInit{
+export class AnimalDetailComponent implements OnInit {
     public animal: Animal;
     public url: string;
 
@@ -19,31 +19,31 @@ export class AnimalDetailComponent implements OnInit{
         private _route: ActivatedRoute,
         private _router: Router,
         private _animalService: AnimalService
-    ){
+    ) {
         this.url = GLOBAL.url;
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.getAnimal();
     }
 
-    getAnimal(){
-        this._route.params.forEach((params: Params) =>{
-            let id= params['id'];
-           
+    getAnimal() {
+        this._route.params.forEach((params: Params) => {
+            const id = params['id'];
+
             this._animalService.getAnimal(id).subscribe(
                 response => {
-                    if(!response.animal){
+                    if (!response.animal) {
                         console.log('1111');
                         this._router.navigate(['/']);
-                    }else{
+                    }else {
                         this.animal = response.animal;
                     }
                 },
-                error =>{
+                error => {
                     console.log(<any>error);
                 }
-            )
+            );
         });
     }
 }

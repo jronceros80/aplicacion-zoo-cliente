@@ -10,34 +10,32 @@ import { GLOBAL } from '../../services/global';
   providers: [AnimalService],
   animations: [fadeIn]
 })
-export class AnimalsComponent implements OnInit{
-    public title:string;
+export class AnimalsComponent implements OnInit {
+    public title: string;
     public animals: Animal[];
-    public url:string;
+    public url: string;
 
     constructor(
         private _animalService: AnimalService
-      ){
+      ) {
         this.title = 'Listado de animales';
-        this.url = GLOBAL.url
+        this.url = GLOBAL.url;
       }
 
-    ngOnInit(){
+    ngOnInit() {
         console.log('animals.component cargado');
         this.getAnimals();
     }
 
-    getAnimals(){
+    getAnimals() {
       this._animalService.getAnimals().subscribe(
         response => {
-          if(response.animals){
+          if (response.animals) {
             this.animals = response.animals;
           }
         },
-        error =>{
+        error => {
           console.log(<any>error);
         });
     }
-    
-
 }

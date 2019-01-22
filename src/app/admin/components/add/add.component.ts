@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
- 
+import { Router, ActivatedRoute } from '@angular/router';
 import { GLOBAL } from '../../../services/global';
 import { AnimalService } from '../../../services/animal.service';
 import { UserService } from '../../../services/user.service';
@@ -15,13 +14,14 @@ import { fadeLateral } from '../../animation';
   providers: [UserService, AnimalService, UploadService],
   animations: [fadeLateral]
 })
-export class AddComponent implements OnInit{
+export class AddComponent implements OnInit {
   public title = 'Añadir';
   public animal: Animal;
   public identity;
   public token;
   public url: string;
   public status: string;
+  public fileToUpload: Array<File>;
 
   constructor(
     private _route: ActivatedRoute,
@@ -29,52 +29,51 @@ export class AddComponent implements OnInit{
     private _userService: UserService,
     private _animalService: AnimalService,
     private _uploadService: UploadService
-  ){
+  ) {
     this.title = 'Añadir';
-    this.animal = new Animal('','','',2017,'','');
+    this.animal = new Animal('', '', '', 2017, '', '');
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     console.log('animal-add componente se ha agregado correctamente');
   }
-  
-  onSubmit(){
+
+  onSubmit() {
     this._animalService.addAnimal(this.token, this.animal).subscribe(
-      response =>{
-          if(!response.animal){
+      response => {
+          if (!response.animal) {
               this.status = 'error';
-          }else{
+          }else {
               this.status = 'success';
               this.animal = response.animal;
 
-              //Subir imagen del animal
-              if(!this.fileToUpload){
+              // Subir imagen del animal
+              if (!this.fileToUpload) {
                 this._router.navigate(['/admin-panel/listado']);
-              }else{
-                this._uploadService.makeFileRequest(this.url+ 'upload-image-animal/'+ this.animal._id, [], this.fileToUpload, this.token, 'image')
+              }else {
+                this._uploadService.makeFileRequest(
+                  this.url + 'upload-image-animal/' + this.animal._id, [], this.fileToUpload, this.token, 'image')
                   .then((result: any) => {
                       this.animal.image = result.image;
                       console.log(this.animal);
                       this._router.navigate(['/admin-panel/listado']);
                   });
               }
-              
           }
       },
-      error =>{
-          var errorMessage = <any>error;
-          if(errorMessage != null){
+      error => {
+          const errorMessage = <any>error;
+          if (errorMessage != null) {
             this.status = 'error';
           }
       }
   );
   }
 
-  public fileToUpload: Array<File>;
-  fileChangeEvent(fileInput: any){
+  fileChangeEvent(fileInput: any) {
       this.fileToUpload = <Array<File>>fileInput.target.files;
   }
 }

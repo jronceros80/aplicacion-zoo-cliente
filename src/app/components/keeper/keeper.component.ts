@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { fadeIn } from '../animation';
-import { User } from '../../models/user'; 
+import { User } from '../../models/user';
 import { GLOBAL } from '../../services/global';
 import { UserService } from '../../services/user.service';
 
@@ -10,31 +10,31 @@ import { UserService } from '../../services/user.service';
   animations: [fadeIn],
   providers: [UserService]
 })
-export class KeeperComponent implements OnInit{
+export class KeeperComponent implements OnInit {
 
     public title: string;
     public url;
-    public keepers:User[];
+    public keepers: User[];
     constructor(
         private _userService: UserService
-    ){
+    ) {
         this.title = 'Cuidadores';
         this.url = GLOBAL.url;
     }
 
-    ngOnInit(){
+    ngOnInit() {
         console.log('keeper.component cargado');
         this.getKeepers();
     }
 
-    getKeepers(){
+    getKeepers() {
         this._userService.getKeepers().subscribe(
           response => {
-            if(response.users){
+            if (response.users) {
               this.keepers = response.users;
             }
           },
-          error =>{
+          error => {
             console.log(<any>error);
           });
       }

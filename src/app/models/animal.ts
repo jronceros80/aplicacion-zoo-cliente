@@ -1,4 +1,4 @@
-export class Animal{
+export class Animal {
     constructor(
         public _id: string,
         public name: string,
@@ -6,5 +6,5 @@ export class Animal{
         public year: number,
         public image: string,
         public user: string
-    ){}
+    ) {}
 }

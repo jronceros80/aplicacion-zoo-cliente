@@ -1,6 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { GLOBAL } from './services/global';
 
 @Component({
@@ -9,7 +9,7 @@ import { GLOBAL } from './services/global';
   styleUrls: ['./app.component.css'],
   providers: [UserService]
 })
-export class AppComponent implements OnInit, DoCheck{
+export class AppComponent implements OnInit, DoCheck {
   public title: string;
   public identity;
   public emailContacto: string;
@@ -17,30 +17,29 @@ export class AppComponent implements OnInit, DoCheck{
 
   constructor(
     private _userService: UserService,
-    private _route: ActivatedRoute,
     private _router: Router
-  ){
-    this.title = "NGZOO";
+  ) {
+    this.title = 'NGZOO';
     this.url = GLOBAL.url;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.emailContacto = localStorage.getItem('emailContacto');
     this.identity = this._userService.getIdentity();
   }
 
-  ngDoCheck(){
+  ngDoCheck() {
     this.emailContacto = localStorage.getItem('emailContacto');
     this.identity = this._userService.getIdentity();
   }
 
-  borrarEmail(){
+  borrarEmail() {
     localStorage.removeItem('emailContacto');
     localStorage.clear();
-    this.emailContacto= null;
+    this.emailContacto = null;
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
     this.identity = null;
     this._router.navigate(['/']);

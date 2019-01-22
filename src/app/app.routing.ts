@@ -14,7 +14,7 @@ import { AnimalDetailComponent } from './components/animal-detail/animal-detail.
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
-    {path: '', redirectTo: 'home', pathMatch:'full'},
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'animales', component: AnimalsComponent},
     {path: 'contacto', component: ContactComponent},
@@ -24,7 +24,7 @@ const appRoutes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'mis-datos', component: UserEditComponent},
     {path: 'animal/:id', component: AnimalDetailComponent},
-	{path: '**', component: HomeComponent}
+    {path: '**', component: HomeComponent}
 ];
 
 export const appRoutingProviders: any[] = [];
